@@ -1,114 +1,50 @@
-#include <iostream>
 #include <bits/stdc++.h>
+#define long long long int
 using namespace std;
 
-typedef long long ll;
-typedef pair<int, int> pp;
-#define pb push_back
+//no need of a priority queue; directly sort vector and check for values row wise;
 
-#define quick                         \
-    ios_base::sync_with_stdio(false); \
-    cin.tie(0);
+void solve_test()
+{
+    int n, m;
+    cin >> n >> m;
+    vector<pair<int, int>> a(n * m);
+    for (int i = 0; i < n * m; i++)
+    {
+        cin >> a[i].first;
+        a[i].second = i;
+    }
+    sort(a.begin(), a.end());
+    for (int i = 0; i < n * m; i++)
+    {
+        a[i].second = -a[i].second;
+    }
+    int res = 0;
+    for (int i = 0; i < n; i++)
+    {
+        sort(a.begin() + (m * i), a.begin() + (m * i + m));
+        for (int j = 0; j < m; j++)
+        {
+            for (int k = 0; k < j; k++)
+            {
+                if (a[i * m + k].second > a[i * m + j].second)
+                    res++;
+            }
+        }
+    }
+    cout << res << "\n";
+}
 
 int main()
 {
-    quick
+    ios::sync_with_stdio(false);
 
-        int t;
-    cin >> t;
-    while (t--)
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; i++)
     {
-        int n, m;
-        cin >> m >> n;
-
-        //vector<int> eyes(n);
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-
-        for (int i = 0; i < n * m; i++)
-        {
-            pair<int, int> p;
-            int x;
-            cin >> x;
-            p.first = x;
-            p.second = i;
-            pq.push(p);
-        }
-
-        int ans[n][m];
-        int index1 = 0;
-        int index2 = 0;
-        vector<int> v;
-
-        while (!pq.empty())
-        {
-            pair<int, int> p1 = pq.top();
-            pq.pop();
-
-            pair<int, int> p2 = pq.top();
-            if (p1.first == p2.first)
-            {
-                v.pb(p1.second);
-            }
-            else
-            {
-                v.pb(p1.second);
-                sort(v.begin(), v.end(), greater<int>());
-
-                for (int i = 0; i < v.size(); i++)
-                {
-                    ans[index1][index2] = v[i];
-                    index2 = (index2 + 1) % n;
-                    if (index2 == 0)
-                    {
-                        index1++;
-                    }
-                }
-                v.clear();
-            }
-        }
-        sort(v.begin(), v.end(), greater<int>());
-
-        for (int i = 0; i < v.size(); i++)
-        {
-            ans[index1][index2] = v[i];
-            index2 = (index2 + 1) % n;
-            if (index2 == 0)
-            {
-                index1++;
-            }
-        }
-        v.clear();
-
-        // for (int i = 0; i < n; i++)
-        // {
-        //     cout << ans[i] << ' ';
-        // }
-
-        // for (int i = 0; i < m; i++)
-        // {
-        //     for (int j = 0; j < n; j++)
-        //     {
-        //         cout << ans[i][j] << " ";
-        //     }
-        //     cout << endl;
-        // }
-        int count = 0;
-
-        for (int z = 0; z < m; z++)
-        {
-            for (int i = 1; i < n; i++)
-            {
-                for (int j = i; j >= 0; j--)
-                {
-                    if (ans[z][j] < ans[z][i])
-                    {
-                        count++;
-                    }
-                }
-            }
-        }
-
-        cout << count << endl;
-        //cout << endl;
+        solve_test();
     }
+
+    return 0;
 }

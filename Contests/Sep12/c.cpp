@@ -19,7 +19,7 @@ int main()
     {
         int n;
         cin >> n;
-        int arr[n][2];
+        int arr[n][2] = {0};
         string s1, s2;
         cin >> s1;
         cin >> s2;
@@ -33,7 +33,10 @@ int main()
         }
         int ans = 0;
         bool flag;
-
+        if (n == 1)
+        {
+            flag = true;
+        }
         for (int i = 0; i < n - 1;)
         {
             flag = false;
