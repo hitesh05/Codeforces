@@ -1,15 +1,15 @@
-x = 16000
+import random
 
-print(x,x%100)
+# x = 2000
+# print(x)
 
-for i in range(x):
-    if(i%2==0):
-        print(1,end=' ')
-    else:
-        print(0, end= ' ')
+# # print(x,x%100)
 
-print()
-for i in range(int(x)):
-    if(i==0):
-        continue
-    print(1,i)
+# for i in range(x):
+#     print(random.randint(-5,5),end=' ')
+
+# print()
+# for i in range(int(x)):
+#     if(i==0):
+#         continue
+#     print(1,i)
