@@ -1,41 +1,51 @@
+#include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
-int dp[100][100];
 
-// Function for matrix chain multiplication
-int helper(vector<int> p, int i, int j)
+#define mod 1e9 + 7
+
+long long int detpart2(vector<vector<long long int>> v, int n, int size, int i, int j)
 {
-    if (i == j)
+    if (size == 1)
     {
-        return 0;
+        return v[i][j];
     }
-    if (dp[i][j] != -1)
+
+    long long int ans = 0;
+
+    int row = i;
+    for (int x = 0; x < size; x++)
     {
-        return dp[i][j];
+        ans += v[row][j] * detpart2(v, n, --size, (i + 1) % n, ++j);
+        row = (row + 1) % n;
     }
-    dp[i][j] = INT_MAX;
-    for (int k = i; k < j; k++)
-    {
-        dp[i][j] = min(
-            dp[i][j], helper(p, i, k) + helper(p, k + 1, j) + p[i - 1] * p[k] * p[j]);
-    }
-    return dp[i][j];
-}
-int Algo(vector<int> v, int n)
-{
-    int i = 1, j = n - 1;
-    return helper(v, i, j);
+
+    return ans;
 }
 
 int main()
 {
     int n;
     cin >> n;
-    vector<int> v(n);
+    vector<vector<long long int>> v(n);
     for (int i = 0; i < n; i++)
     {
-        cin >> v[i];
+        for (int j = 0; j < n; j++)
+        {
+            int x;
+            cin >> x;
+            v[i].push_back(x);
+        }
     }
 
-    cout << Algo(v, n) << endl;
+    long long int ans = 0;
+    for (int i = 0; i < n; i++)
+    {
+        int s = (i + 1) % n;
+        ans += v[i][0] * detpart2(v, n, n - 1, s, 1);
+    }
+
+    ans = ans % (long long int)(mod);
+
+    cout << ans << endl;
 }
