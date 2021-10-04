@@ -43,7 +43,6 @@ void solve()
 int main()
 {
     quick
-
         int t;
     cin >> t;
     //cout << t << endl;
