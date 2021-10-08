@@ -12,6 +12,7 @@ int main()
         string s;
         cin >> n >> a >> b >> s;
         int m = unique(s.begin(), s.end()) - s.begin();
-        cout << n * a + max(n * b, (m / 2 + 1) * b) << '\n';
+        // cout << m << endl;
+        cout << n * a + max(n * b, (m / 2 + 1) * b) << '\n'; // n*b: bits removed 1 by 1 (b>0) OR we check for unique substrings
     }
 }
