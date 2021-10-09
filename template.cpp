@@ -6,7 +6,7 @@ using namespace std;
     ios_base::sync_with_stdio(false); \
     cin.tie(0);
 
-typedef long long ll;
+typedef long long int ll;
 
 using PII = pair<int, int>;
 using VI = vector<int>;
@@ -21,11 +21,12 @@ int main()
 {
     quick
 
-        int t;
+    int t;
     cin >> t;
-    //cout << t << endl;
     while (t--)
     {
         solve();
     }
+
+    return 0;
 }
