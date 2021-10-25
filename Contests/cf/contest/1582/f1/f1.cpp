@@ -15,25 +15,16 @@ using VI = vector<int>;
 
 void solve()
 {
-    string s;
-    cin >> s;
-    char max = '0';
-    for (int i = 0; i < s.size(); i++)
-    {
-        if (s[i] > max)
-        {
-            max = s[i];
-        }
-    }
-
-    cout << max << endl;
+    int x = 2^4^7;
+    int y = 6^7;
+    cout << x <<" " << y<< endl;
 }
 
 int main()
 {
     quick
 
-        int t;
+    int t;
     cin >> t;
     while (t--)
     {

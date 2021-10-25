@@ -15,25 +15,28 @@ using VI = vector<int>;
 
 void solve()
 {
-    string s;
-    cin >> s;
-    char max = '0';
-    for (int i = 0; i < s.size(); i++)
-    {
-        if (s[i] > max)
-        {
-            max = s[i];
+    string s; cin>>s;
+    int m = INT16_MAX;
+    int ind;
+    for(int i=0;i<s.size();i++){
+        int x = int(s[i]-'a');
+        if(x<m){
+            m=x;
+            ind=i;
         }
     }
+    s.erase(ind,1);
 
-    cout << max << endl;
+    char c = char(m) + 'a';
+    
+    cout << c << " " << s << endl;
 }
 
 int main()
 {
     quick
 
-        int t;
+    int t;
     cin >> t;
     while (t--)
     {
